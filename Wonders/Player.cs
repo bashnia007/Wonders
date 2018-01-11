@@ -12,6 +12,12 @@ namespace Wonders
         public Wonder Wonder { get; set; }
         public List<Card> Cards { get; set; }
 
+        public Player LeftNeighbour { get; set; }
+
+        public Player RightNeighbour { get; set; }
+
+        public int Strength { get; set; }
+
         public Player()
         {
             Cards = new List<Card>();

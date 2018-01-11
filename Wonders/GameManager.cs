@@ -16,6 +16,8 @@ namespace Wonders
 
         public List<Card> DropedCards;
 
+        public int VictoryPoints { get; set; }
+
         public GameManager()
         {
             DropedCards = new List<Card>();
@@ -83,6 +85,27 @@ namespace Wonders
                     DropedCards.Add(decision.SelectedCard);
                     break;
                 case DecisionType.UseLikeLevel: break;
+            }
+        }
+
+        public void ResloveBattles()
+        {
+            foreach (var player in Players)
+            {
+                CalculateBattle(player, player.LeftNeighbour);
+                CalculateBattle(player, player.RightNeighbour);
+            }
+        }
+
+        private void CalculateBattle(Player player, Player neighbour)
+        {
+            if (player.Strength < neighbour.Strength)
+            {
+                VictoryPoints -= 1;
+            }
+            if (player.Strength > neighbour.Strength)
+            {
+                VictoryPoints += 1;
             }
         }
     }
