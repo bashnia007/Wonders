@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Wonders.Cards;
+using Wonders.Database;
 
 namespace Wonders
 {
@@ -17,6 +19,29 @@ namespace Wonders
                 result.Add(new MilitaryCard());
             }
             return result;
+        }
+
+        public static void ReadCards()
+        {
+            using (var db = new WondersContext())
+            {
+                db.MilitaryCards.Load();
+                var militaryCards = db.MilitaryCards.Local.ToBindingList();
+
+                foreach (var militaryCard in militaryCards)
+                {
+                        
+                }
+            }
+        }
+
+        public static void AddMilitaryCards(MilitaryCard card)
+        {
+            using (var db = new WondersContext())
+            {
+                db.MilitaryCards.Add(card);
+                db.SaveChanges();
+            }
         }
     }
 }
