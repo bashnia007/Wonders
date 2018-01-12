@@ -42,10 +42,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Card.cs" />
+    <Compile Include="Cards\CultureCard.cs" />
+    <Compile Include="Cards\ICard.cs" />
+    <Compile Include="Cards\MilitaryCard.cs" />
+    <Compile Include="Cards\ResourceCard.cs" />
     <Compile Include="DatabaseProvider.cs" />
     <Compile Include="Decision.cs" />
     <Compile Include="Enums\DecisionType.cs" />
+    <Compile Include="Enums\Resource.cs" />
     <Compile Include="Enums\WonderType.cs" />
     <Compile Include="GameManager.cs" />
     <Compile Include="Player.cs" />

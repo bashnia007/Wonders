@@ -11,6 +11,7 @@ namespace Wonders
     {
         public WonderType Name { get; set; }
         public int Side { get; set; }
+        public Resource Resource { get; set; }
 
         public Wonder(WonderType name, int side)
         {

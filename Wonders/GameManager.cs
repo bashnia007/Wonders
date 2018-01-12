@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Wonders.Cards;
 using Wonders.Enums;
 
 namespace Wonders
@@ -14,13 +15,13 @@ namespace Wonders
         private const int CardNumberToPlay = 6;
         public List<Player> Players { get; set; }
 
-        public List<Card> DropedCards;
+        public List<ICard> DropedCards;
 
         public int VictoryPoints { get; set; }
 
         public GameManager()
         {
-            DropedCards = new List<Card>();
+            DropedCards = new List<ICard>();
         }
 
         public void ProvideWonders()

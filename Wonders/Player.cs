@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Wonders.Cards;
 using Wonders.Enums;
 
 namespace Wonders
@@ -10,7 +11,7 @@ namespace Wonders
     public class Player
     {
         public Wonder Wonder { get; set; }
-        public List<Card> Cards { get; set; }
+        public List<ICard> Cards { get; set; }
 
         public Player LeftNeighbour { get; set; }
 
@@ -20,7 +21,7 @@ namespace Wonders
 
         public Player()
         {
-            Cards = new List<Card>();
+            Cards = new List<ICard>();
         }
 
         public Decision MakeDecision()
