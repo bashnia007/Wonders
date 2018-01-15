@@ -16,7 +16,7 @@ namespace Wonders
             var result = new List<ICard>();
             for (int i = 0; i < 49; i++)
             {
-                result.Add(new MilitaryCard());
+                //result.Add(new MilitaryCard());
             }
             return result;
         }
@@ -35,11 +35,11 @@ namespace Wonders
             }
         }
 
-        public static void AddMilitaryCards(MilitaryCard card)
+        public static void AddMilitaryCards(MilitaryCard dbCard)
         {
             using (var db = new WondersContext())
             {
-                db.MilitaryCards.Add(card);
+                db.MilitaryCards.Add(dbCard);
                 db.SaveChanges();
             }
         }

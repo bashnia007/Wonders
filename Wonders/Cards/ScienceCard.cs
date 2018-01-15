@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Wonders.Enums;
 
 namespace Wonders.Cards
 {
-    public class ResourceCard : Card
+    public class ScienceCard : Card
     {
-        public Dictionary<Resource, int> AvaivableResources => Price;
+        public int ScienceType => CardBenefit;
     }
 }

@@ -11,25 +11,30 @@ namespace Wonders
     public class Player
     {
         public Wonder Wonder { get; set; }
-        public List<ICard> Cards { get; set; }
+        public List<ICard> CardsOnHand { get; set; }
 
         public Player LeftNeighbour { get; set; }
 
         public Player RightNeighbour { get; set; }
 
+        public List<ICard> BuildCards { get; set; }
+        public int Coins { get; set; }
+
+        public Dictionary<Resource, int> AvaivableResources { get; set; }
+        
         public int Strength { get; set; }
 
         public Player()
         {
-            Cards = new List<ICard>();
+            CardsOnHand = new List<ICard>();
         }
 
         public Decision MakeDecision()
         {
             var rnd = new Random();
-            var cardId = rnd.Next(Cards.Count);
-            var selectedCard = Cards[cardId];
-            Cards.Remove(selectedCard);
+            var cardId = rnd.Next(CardsOnHand.Count);
+            var selectedCard = CardsOnHand[cardId];
+            CardsOnHand.Remove(selectedCard);
             var decisionType = DecisionType.Build;
             var decision = new Decision
             {
@@ -38,5 +43,14 @@ namespace Wonders
             };
             return decision;
         }
+
+        /*
+        private List<ICard> GetAvaivableCardsToBuild()
+        {
+            foreach (var card in CardsOnHand)
+            {
+                var necessaryResources = 
+            }
+        }*/
     }
 }

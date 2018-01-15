@@ -45,7 +45,7 @@ namespace UnitTests
             var gameManager = new GameManager();
             gameManager.Players = players;
             gameManager.ProvideCards(1);
-            Assert.IsTrue(players.All(pl => pl.Cards.Count == 7));
+            Assert.IsTrue(players.All(pl => pl.CardsOnHand.Count == 7));
         }
 
         [TestMethod]
@@ -73,7 +73,6 @@ namespace UnitTests
         {
             var card = new MilitaryCard
             {
-                Id = 1,
                 Title = "Test military card",
                 Strength = 1,
                 Brick = 2,

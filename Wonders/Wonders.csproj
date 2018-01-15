@@ -61,14 +61,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cards\CultureCard.cs" />
+    <Compile Include="Cards\DbCard.cs" />
+    <Compile Include="Cards\Card.cs" />
+    <Compile Include="Cards\IBuildingCard.cs" />
     <Compile Include="Cards\ICard.cs" />
     <Compile Include="Cards\MilitaryCard.cs" />
     <Compile Include="Cards\ResourceCard.cs" />
+    <Compile Include="Cards\ScienceCard.cs" />
+    <Compile Include="Cards\TradeCard.cs" />
     <Compile Include="DatabaseProvider.cs" />
     <Compile Include="Database\WondersContext.cs" />
     <Compile Include="Decision.cs" />
     <Compile Include="Enums\DecisionType.cs" />
     <Compile Include="Enums\Resource.cs" />
+    <Compile Include="Enums\ResourceCardType.cs" />
+    <Compile Include="Enums\TradeType.cs" />
     <Compile Include="Enums\WonderType.cs" />
     <Compile Include="GameManager.cs" />
     <Compile Include="Player.cs" />
@@ -79,7 +86,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Database\WondersCards.db">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

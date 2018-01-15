@@ -50,7 +50,7 @@ namespace Wonders
                     var selectedCardId = rnd.Next(cards.Count);
                     var card = cards[selectedCardId];
 
-                    player.Cards.Add(card);
+                    player.CardsOnHand.Add(card);
                     cards.Remove(card);
                 }
             }
@@ -71,7 +71,7 @@ namespace Wonders
 
                 foreach (var player in Players)
                 {
-                    DropedCards.AddRange(player.Cards);
+                    DropedCards.AddRange(player.CardsOnHand);
                 }
 
             }

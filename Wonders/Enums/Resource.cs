@@ -5,7 +5,9 @@
         Brick,
         Wood,
         Stone,
+        Gold,
         Papirus,
-        Glass
+        Glass,
+        Cloth
     }
 }
