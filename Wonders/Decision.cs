@@ -10,7 +10,7 @@ namespace Wonders
 {
     public class Decision
     {
-        public ICard SelectedCard { get; set; }
+        public Card SelectedCard { get; set; }
         public DecisionType DecisionType { get; set; }
     }
 }

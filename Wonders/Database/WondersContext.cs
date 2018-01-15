@@ -17,6 +17,8 @@ namespace Wonders.Database
         public DbSet<MilitaryCard> MilitaryCards { get; set; }
         public DbSet<Card> CultureCards { get; set; }
         public DbSet<ResourceCard> ResourceCards { get; set; }
+        public DbSet<SecondaryResourceCard> SecondaryResourceCards { get; set; }
         public DbSet<ScienceCard> ScienceCards { get; set; }
+        public DbSet<TradeCard> TradeCards { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace Wonders.Cards
     {
         public int Id { get; set; }
         public string Text { get; set; }
-        public string UniqCardId { get; set; }
+        public int UniqCardId { get; set; }
         public int CardType { get; set; }
         public int Epoch { get; set; }
         public int MinPlayers { get; set; }
@@ -23,5 +23,6 @@ namespace Wonders.Cards
         public int Cloth { get; set; }
         public int CardBenefit { get; set; }
         public int CoinsCost { get; set; }
+        public int ParentUniqCard { get; set; }
     }
 }

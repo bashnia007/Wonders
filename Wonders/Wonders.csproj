@@ -68,6 +68,7 @@
     <Compile Include="Cards\MilitaryCard.cs" />
     <Compile Include="Cards\ResourceCard.cs" />
     <Compile Include="Cards\ScienceCard.cs" />
+    <Compile Include="Cards\SecondaryResourceCard.cs" />
     <Compile Include="Cards\TradeCard.cs" />
     <Compile Include="DatabaseProvider.cs" />
     <Compile Include="Database\WondersContext.cs" />
