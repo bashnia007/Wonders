@@ -20,7 +20,7 @@ namespace Wonders
         public List<Card> BuildCards { get; set; }
         public int Coins { get; set; }
 
-        public Dictionary<Resource, int> AvaivableResources { get; set; }
+        public Dictionary<ResourceType, int> AvaivableResources { get; set; }
         
         public int Strength { get; set; }
 
@@ -41,21 +41,55 @@ namespace Wonders
                 DecisionType = decisionType,
                 SelectedCard = selectedCard
             };
+            switch (decisionType)
+            {
+                case DecisionType.Build:
+                    BuildCard(selectedCard);
+                    break;
+            }
             return decision;
         }
 
+        private void BuildCard(Card selectedCard)
+        {
+            Pay();
+            switch (selectedCard.CardType)
+            {
+                case (int)CardType.ResourceCard:
+                    //if(AvaivableResources.ContainsKey())
+                    break;
+                case (int)CardType.MilitaryCard: break;
+                case (int)CardType.CultureCard: break;
+                case (int)CardType.ScienceCard: break;
+                case (int)CardType.TradeCard: break;
+            }
+        }
+
+        private void Pay()
+        {
+            
+        }
         
         private List<Card> GetAvaivableCardsToBuild()
         {
             var freeCards = GetFreeCards();
 
+            var necessaryResources = new Dictionary<ResourceType, int>();
             foreach (var card in CardsOnHand.Except(freeCards))
             {
-                var necessaryResources = new Dictionary<Resource, int>();
                 foreach (var cardResource in card.Price)
                 {
-                    //necessaryResources.Add(cardResource.Key, );
+                    int difference = cardResource.Value - AvaivableResources[cardResource.Key];
+                    if (difference > 0)
+                    {
+                        necessaryResources.Add(cardResource.Key, difference);
+                    }
                 }
+            }
+
+            foreach (var necessaryResource in necessaryResources)
+            {
+               // if(LeftNeighbour.AvaivableResources)
             }
 
             return null;

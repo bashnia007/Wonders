@@ -11,7 +11,7 @@ namespace Wonders
     {
         static void Main(string[] args)
         {
-            var card = new MilitaryCard
+            /*var card = new MilitaryCard
             {
                 Id = 1,
                 Title = "Test military card",
@@ -25,9 +25,10 @@ namespace Wonders
                 Papirus = 1,
                 Stone = 0,
                 Wood = 0
-            };
+            };*/
 
-            DatabaseProvider.AddMilitaryCards(card);
+            //DatabaseProvider.AddMilitaryCards(card);
+            DatabaseProvider.AddCards();
         }
     }
 }

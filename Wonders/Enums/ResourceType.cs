@@ -1,6 +1,6 @@
 ﻿namespace Wonders.Enums
 {
-    public enum Resource
+    public enum ResourceType
     {
         Brick,
         Wood,

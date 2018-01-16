@@ -5,15 +5,15 @@ namespace Wonders.Cards
 {
     public class Card : DbCard
     {
-        public Dictionary<Resource, int> Price => new Dictionary<Resource, int>
+        public Dictionary<ResourceType, int> Price => new Dictionary<ResourceType, int>
         {
-            {Resource.Brick, Brick},
-            {Resource.Wood, Wood},
-            {Resource.Cloth, Cloth},
-            {Resource.Glass, Glass},
-            {Resource.Gold, Gold},
-            {Resource.Papirus, Papirus},
-            {Resource.Stone, Stone}
+            {ResourceType.Brick, Brick},
+            {ResourceType.Wood, Wood},
+            {ResourceType.Cloth, Cloth},
+            {ResourceType.Glass, Glass},
+            {ResourceType.Gold, Gold},
+            {ResourceType.Papirus, Papirus},
+            {ResourceType.Stone, Stone}
         };
     }
 }

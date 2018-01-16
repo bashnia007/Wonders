@@ -15,13 +15,13 @@ namespace Wonders
         private const int CardNumberToPlay = 6;
         public List<Player> Players { get; set; }
 
-        public List<ICard> DropedCards;
+        public List<Card> DropedCards;
 
         public int VictoryPoints { get; set; }
 
         public GameManager()
         {
-            DropedCards = new List<ICard>();
+            DropedCards = new List<Card>();
         }
 
         public void ProvideWonders()

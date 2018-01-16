@@ -1,7 +1,9 @@
-﻿namespace Wonders.Cards
+﻿using Wonders.Enums;
+
+namespace Wonders.Cards
 {
     public class TradeCard : Card
     {
-        public int TradeType { get; set; }
+        public TradeType TradeType => (TradeType) CardBenefit;
     }
 }

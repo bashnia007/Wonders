@@ -5,6 +5,6 @@ namespace Wonders.Cards
 {
     public class SecondaryResourceCard : Card
     {
-        public Dictionary<Resource, int> AvaivableResources => Price;
+        public Dictionary<ResourceType, int> AvaivableResources => Price;
     }
 }
