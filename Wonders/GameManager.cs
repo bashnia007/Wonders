@@ -50,7 +50,7 @@ namespace Wonders
                     var selectedCardId = rnd.Next(cards.Count);
                     var card = cards[selectedCardId];
 
-                    player.CardsOnHand.Add(card);
+                    player.CardsOnHand.Add(card as Card);
                     cards.Remove(card);
                 }
             }

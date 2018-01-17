@@ -29,6 +29,10 @@ namespace Wonders
 
             //DatabaseProvider.AddMilitaryCards(card);
             DatabaseProvider.AddCards();
+            GameManager gameManager = new GameManager();
+            //gameManager.ProvideCards(1);
+
+            var cards = DatabaseProvider.ReadAllCards();
         }
     }
 }
