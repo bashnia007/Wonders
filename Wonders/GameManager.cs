@@ -17,6 +17,8 @@ namespace Wonders
 
         public List<Card> DropedCards;
 
+        public List<Card> GameCards { get; set; }
+
         public int VictoryPoints { get; set; }
 
         public GameManager()
@@ -41,17 +43,25 @@ namespace Wonders
 
         public void ProvideCards(int epoch)
         {
-            var cards = DatabaseProvider.GetCards(epoch);
+            if (GameCards == null)
+            {
+                throw new Exception("There are no cards!");
+            }
+            if (Players == null)
+            {
+                throw new Exception("There are no players!");
+            }
             var rnd = new Random();
+            var cardsForCurrentPlayersNumber = GameCards.Where(c => c.MinPlayers <= Players.Count).ToList();
             foreach (var player in Players)
             {
                 for (int i = 0; i < EpochCardsAmount; i++)
                 {
-                    var selectedCardId = rnd.Next(cards.Count);
-                    var card = cards[selectedCardId];
+                    var selectedCardId = rnd.Next(cardsForCurrentPlayersNumber.Count);
+                    var card = cardsForCurrentPlayersNumber[selectedCardId];
 
-                    player.CardsOnHand.Add(card as Card);
-                    cards.Remove(card);
+                    player.CardsOnHand.Add(card);
+                    cardsForCurrentPlayersNumber.Remove(card);
                 }
             }
         }
