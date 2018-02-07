@@ -10,5 +10,6 @@ namespace Wonders.Cards
     public class ResourceCard : Card
     {
         public Dictionary<ResourceType, int> AvaivableResources => Price;
+        public bool Or => AvaivableResources.GroupBy(r => r.Key).Count() > 1;
     }
 }

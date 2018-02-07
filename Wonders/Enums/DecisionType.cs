@@ -2,8 +2,9 @@
 {
     public enum DecisionType
     {
-        Build,
+        BuildByResources,
+        BuildByLink,
         Drop,
-        UseLikeLevel
+//        UseLikeLevel
     }
 }

@@ -68,56 +68,119 @@ namespace Wonders
 
         public void GameProcess()
         {
-            for (int epoch = 0; epoch < EpochsCount; epoch++)
+            for (int epoch = 1; epoch <= EpochsCount; epoch++)
             {
+                ProvideCards(epoch);
                 for (int cardNumber = 0; cardNumber < CardNumberToPlay; cardNumber++)
                 {
                     foreach (var player in Players)
                     {
                         var decision = player.MakeDecision();
-                        ComputeSelectedCard(decision);
+                        if(IsDecisionAvaivable(decision)) ComputeSelectedCard(player, decision);
                     }
+                    TransferCards(epoch);
                 }
 
+                // drop last card
                 foreach (var player in Players)
                 {
                     DropedCards.AddRange(player.CardsOnHand);
                 }
-
+                ResolveBattles(epoch);
             }
         }
 
-        private void ComputeSelectedCard(Decision decision)
+        private void TransferCards(int epoch)
+        {
+            var temp = Players[0].CardsOnHand;
+            if (epoch % 2 == 0)
+            {
+                foreach (var player in Players)
+                {
+                    player.CardsOnHand = player.LeftNeighbour.CardsOnHand;
+                }
+            }
+            else
+            {
+                foreach (var player in Players)
+                {
+                    player.CardsOnHand = player.RightNeighbour.CardsOnHand;
+                }
+            }
+            Players[Players.Count - 1].CardsOnHand = temp;
+        }
+
+        private void ComputeSelectedCard(Player player, Decision decision)
         {
             switch (decision.DecisionType)
             {
-                case DecisionType.Build: break;
+                case DecisionType.BuildByResources:
+                    BuildCard(player, decision);
+                    break;
+                case DecisionType.BuildByLink:
+                    player.BuildCards.Add(decision.SelectedCard);
+                    break;
                 case DecisionType.Drop:
+                    player.Coins += 3;
                     DropedCards.Add(decision.SelectedCard);
                     break;
-                case DecisionType.UseLikeLevel: break;
+//                case DecisionType.UseLikeLevel: break;
             }
+            player.CardsOnHand.Remove(decision.SelectedCard);
         }
 
-        public void ResloveBattles()
+        public void ResolveBattles(int epoch)
         {
             foreach (var player in Players)
             {
-                CalculateBattle(player, player.LeftNeighbour);
-                CalculateBattle(player, player.RightNeighbour);
+                CalculateBattle(player, player.LeftNeighbour, epoch);
+                CalculateBattle(player, player.RightNeighbour, epoch);
             }
         }
 
-        private void CalculateBattle(Player player, Player neighbour)
+        private void CalculateBattle(Player player, Player neighbour, int epoch)
         {
             if (player.Strength < neighbour.Strength)
             {
-                VictoryPoints -= 1;
+                player.MilitaryBadges.Add(new MilitaryBadge(MilitaryBadgeType.Lose));
             }
             if (player.Strength > neighbour.Strength)
             {
-                VictoryPoints += 1;
+                player.MilitaryBadges.Add(new MilitaryBadge((MilitaryBadgeType) epoch));
             }
+        }
+
+	    private void BuildCard(Player player, Decision decision)
+	    {
+            MakeTransfers(player, decision);
+	        player.BuildCards.Add(decision.SelectedCard);
+	        ExecuteEffectOfCard(player, decision.SelectedCard);
+	    }
+
+        private void MakeTransfers(Player player, Decision decision)
+        {
+            
+        }
+
+        private void ExecuteEffectOfCard(Player player, Card card)
+        {
+            switch ((CardType)card.CardType)
+            {
+                case CardType.MilitaryCard:
+                    var militaryCard = (MilitaryCard)card;
+                    player.Strength += militaryCard.Strength;
+                    break;
+            }
+        }
+
+        private bool IsDecisionAvaivable(Decision decision)
+        {
+            return true;
+        }
+
+        private void BuildLevel(Player player)
+        {
+            
         }
     }
 }

@@ -12,5 +12,8 @@ namespace Wonders
     {
         public Card SelectedCard { get; set; }
         public DecisionType DecisionType { get; set; }
+        public List<Card> UsedCards { get; set; }
+        public List<Card> UsedLeftCards { get; set; }
+        public List<Card> UsedRightCards { get; set; }
     }
 }

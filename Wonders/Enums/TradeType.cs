@@ -5,22 +5,22 @@
         /// <summary>
         /// Give 5 coins
         /// </summary>
-        Tavern,
+        Tavern = 1,
 
         /// <summary>
         /// By primary resources from right neighbour for 1 coin
         /// </summary>
-        EastPost,
+        EastPost = 2,
 
         /// <summary>
         /// By primary resources from left neighbour for 1 coin
         /// </summary>
-        WestPost,
+        WestPost = 3,
 
         /// <summary>
         /// By secondary resources from both neighbour for 1 coin
         /// </summary>
-        Marketplace,
+        Marketplace = 4,
 
         /// <summary>
         /// Get free secondary resource
