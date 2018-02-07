@@ -11,5 +11,8 @@ namespace Wonders.Cards
     {
         public Dictionary<ResourceType, int> AvaivableResources => Price;
         public bool Or => AvaivableResources.GroupBy(r => r.Key).Count() > 1;
+
+        public bool IsPrimaryResource => AvaivableResources.ContainsKey(ResourceType.Brick) || AvaivableResources.ContainsKey(ResourceType.Gold) ||
+                                         AvaivableResources.ContainsKey(ResourceType.Wood) || AvaivableResources.ContainsKey(ResourceType.Stone);
     }
 }

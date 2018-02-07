@@ -40,6 +40,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -81,6 +84,7 @@
     <Compile Include="Enums\TradeType.cs" />
     <Compile Include="Enums\WonderType.cs" />
     <Compile Include="GameManager.cs" />
+    <Compile Include="Helpers\ObjectCopier.cs" />
     <Compile Include="MilitaryBadge.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />

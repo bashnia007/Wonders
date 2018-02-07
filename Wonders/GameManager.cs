@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Wonders.Cards;
 using Wonders.Enums;
+using Wonders.Helpers;
 
 namespace Wonders
 {
@@ -85,6 +87,7 @@ namespace Wonders
                 foreach (var player in Players)
                 {
                     DropedCards.AddRange(player.CardsOnHand);
+                    player.CardsOnHand = new List<Card>();
                 }
                 ResolveBattles(epoch);
             }
@@ -92,22 +95,26 @@ namespace Wonders
 
         private void TransferCards(int epoch)
         {
-            var temp = Players[0].CardsOnHand;
-            if (epoch % 2 == 0)
+            var savedcards = new List<Card>[4];
+            for (int i = 0; i < Players.Count; i++)
             {
-                foreach (var player in Players)
+                savedcards[i] = Players[i].CardsOnHand.Select(ObjectCopier.Clone).ToList();
+            }
+            if (epoch % 2 != 0)
+            {
+                for (int i = 0; i < Players.Count; i++)
                 {
-                    player.CardsOnHand = player.LeftNeighbour.CardsOnHand;
+                    Players[i].CardsOnHand = savedcards[(i + 1) % Players.Count];
                 }
             }
             else
             {
-                foreach (var player in Players)
+                for (int i = Players.Count - 1; i >= 0; i--)
                 {
-                    player.CardsOnHand = player.RightNeighbour.CardsOnHand;
+                    Players[i].CardsOnHand = savedcards[(Players.Count + i - 1) % Players.Count];
                 }
             }
-            Players[Players.Count - 1].CardsOnHand = temp;
+            
         }
 
         private void ComputeSelectedCard(Player player, Decision decision)
@@ -115,10 +122,10 @@ namespace Wonders
             switch (decision.DecisionType)
             {
                 case DecisionType.BuildByResources:
-                    BuildCard(player, decision);
+                    BuildCard(false, player, decision);
                     break;
                 case DecisionType.BuildByLink:
-                    player.BuildCards.Add(decision.SelectedCard);
+                    BuildCard(true, player, decision);
                     break;
                 case DecisionType.Drop:
                     player.Coins += 3;
@@ -150,16 +157,24 @@ namespace Wonders
             }
         }
 
-	    private void BuildCard(Player player, Decision decision)
+	    private void BuildCard(bool isLink, Player player, Decision decision)
 	    {
-            MakeTransfers(player, decision);
+            if(!isLink) MakeTransfers(player, decision);
 	        player.BuildCards.Add(decision.SelectedCard);
 	        ExecuteEffectOfCard(player, decision.SelectedCard);
 	    }
 
         private void MakeTransfers(Player player, Decision decision)
         {
-            
+            if (decision.DecisionType != DecisionType.BuildByResources) return;
+            player.Coins -= decision.SelectedCard.CoinsCost;
+            foreach (var leftCard in decision.UsedLeftCards)
+            {
+                if (leftCard.IsPrimaryResource)
+                {
+                    
+                }
+            }
         }
 
         private void ExecuteEffectOfCard(Player player, Card card)
@@ -167,8 +182,7 @@ namespace Wonders
             switch ((CardType)card.CardType)
             {
                 case CardType.MilitaryCard:
-                    var militaryCard = (MilitaryCard)card;
-                    player.Strength += militaryCard.Strength;
+                    player.Strength += card.CardBenefit;
                     break;
             }
         }
